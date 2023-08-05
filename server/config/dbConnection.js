@@ -15,4 +15,4 @@ try {
 }
 }
 
-module.exports = connectToDB;
+export default  connectToDB;
