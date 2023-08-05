@@ -1,7 +1,7 @@
 import express from 'express';
 const router = express.Router();
 
-import isLoggedIn from '../middlewares/auth.middleware.js';
+// import isLoggedIn from '../middlewares/auth.middleware.js';
 
 import  {
     register,
@@ -14,6 +14,7 @@ import  {
     updateUser
 } from './../controllers/user.controller.js';
 import upload from '../middlewares/multer.middleware.js';
+import { isLoggedIn } from '../middlewares/auth.middleware.js';
 
 router.post('/register', upload.single('avatar'), register);
 router.post('/login', login);

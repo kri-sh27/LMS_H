@@ -1,7 +1,7 @@
 import AppError from "../utils/appError.js";
 import jwt from 'jsonwebtoken';
 
- const isLoggedIn = function(req, res, next) {
+ export  const isLoggedIn = function(req, res, next) {
     const { token } = req.cookies;
 
     if (!token) {
@@ -18,7 +18,7 @@ import jwt from 'jsonwebtoken';
     next();
 }
 
-const authorizedRoles = (...roles) => (req, res, next) => {
+export const authorizedRoles = (...roles) => (req, res, next) => {
     const currentRole = req.user.role;
     if (!roles.includes(currentRole)) {
         return next(
@@ -28,7 +28,7 @@ const authorizedRoles = (...roles) => (req, res, next) => {
     next();
 }
 
-const authorizedSubscriber = async(req, res, next) => {
+export const authorizedSubscriber = async(req, res, next) => {
     const subscriptionStatus = req.user.subsciption.status;
     const currentRole = req.user.role;
     if (currentRole !== 'ADMIN' && subscriptionStatus !== 'active') {
@@ -42,8 +42,8 @@ const authorizedSubscriber = async(req, res, next) => {
     next();
 }
 
-export {
-    isLoggedIn,
-    authorizedRoles,
-    authorizedSubscriber
-}
+// export {
+//     isLoggedIn,
+//     authorizedRoles,
+//     authorizedSubscriber
+// }
